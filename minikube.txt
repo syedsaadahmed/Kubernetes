@@ -1,0 +1,90 @@
+
+
+Minikube (kubernetes deployment locally on linux machine)
+---------------------------------------------------------
+Minikube is a tool that makes it easy to run Kubernetes locally. Minikube runs a single-node Kubernetes cluster inside a VM
+
+
+Install kubectl
+(Installed from here locally:)
+
+https://kubernetes.io/docs/tasks/tools/install-kubectl/
+
+Install Minikube
+(Installed from here locally:)
+
+https://github.com/kubernetes/minikube/releases
+
+
+
+$ minikube start --vm-driver=none   (Run kubernetes components locally on docker and NOT in VM(vbox or kvm))
+
+Get the IP of the local kubernetes cluster: $minikube ip
+SSH into the minikube VM: $minikube ssh
+$minikube dashboard
+$minikube service list
+
+
+Execute locally:
+-----------------
+$ minikube start (default driver is vbox)
+(spin up minikub VM in vobx, kubernetes server/master start)
+
+$ minikube status (show status like ip)
+$ minikube dashboard (Open dashboard in browser)
+$ minikube stop (stop kubernetes server/master)
+
+Make sure we are using the Minikube Docker daemon:
+$ eval $(minikube docker-env)
+Revert for using local docker daemon
+$ eval $(minikube docker-env -u)
+
+$ kubectl version
+$ kubectl config current-context
+$ kubectl cluster-info
+$ kubectl cluster-info dump
+$ kubectl get nodes
+$ kubectl get services
+$ kubectl get deployment
+$ kubectl get pods
+$ kubectl get pods --all-namespaces
+$ kubectl get events
+
+create a kubernetes deployment
+$ kubectl run hello-nginx --image=nginx --port=80
+$ kubectl run api --image=api:v1 --port=8080 --image-pull-policy=Never
+
+$ kubectl expose deployment hello-nginx --type=LoadBalancer
+$ kubectl expose deployment hello-node --type=LoadBalancer
+
+muhammadhassan@gt-dev-hasan:~$ kubectl get services
+NAME          TYPE           CLUSTER-IP     EXTERNAL-IP   PORT(S)        AGE
+hello-nginx   LoadBalancer   10.102.47.77   <pending>     80:31801/TCP   1h
+kubernetes    ClusterIP      10.96.0.1      <none>        443/TCP        17h
+
+Check service at 
+http://192.168.99.100:31801/
+
+
+
+Scale the service to 3 pods
+$ kubectl scale --replicas=3 deployment/hello-nginx
+$ kubectl get deployment
+
+CleanUp:
+$ kubectl delete service hello-nginx
+$ kubectl delete deployment hello-nginx
+
+
+
+https://www.bogotobogo.com/DevOps/DevOps-Kubernetes-1-Running-Kubernetes-Locally-via-Minikube.php
+
+
+
+https://hackernoon.com/containerizing-a-node-js-api-using-docker-with-kubernetes-and-minikube-30255fd33ef9
+
+
+
+https://auth0.com/blog/load-balancing-nodejs-applications-with-nginx-and-docker/
+
+http://anandmanisankar.com/posts/docker-container-nginx-node-redis-example/
