@@ -1,5 +1,4 @@
 
-
 Minikube (kubernetes deployment locally on linux machine)
 ---------------------------------------------------------
 Minikube is a tool that makes it easy to run Kubernetes locally. Minikube runs a single-node Kubernetes cluster inside a VM
@@ -88,3 +87,11 @@ https://hackernoon.com/containerizing-a-node-js-api-using-docker-with-kubernetes
 https://auth0.com/blog/load-balancing-nodejs-applications-with-nginx-and-docker/
 
 http://anandmanisankar.com/posts/docker-container-nginx-node-redis-example/
+
+
+
+Helpful material for understanding:
+
+https://mherman.org/
+https://testdriven.io/blog/running-flask-on-kubernetes/
+https://mherman.org/presentations/flask-kubernetes/#1
